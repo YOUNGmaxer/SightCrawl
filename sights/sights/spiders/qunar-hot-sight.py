@@ -17,7 +17,7 @@ class HotSightSpider(scrapy.Spider):
   proxy = None
 
   start_urls = [
-    'http://piao.qunar.com/ticket/list.htm?keyword=' + KEYWORD
+    f'http://piao.qunar.com/ticket/list.htm?keyword={KEYWORD}'
   ]
 
   def parse(self, response):
@@ -45,8 +45,8 @@ class HotSightSpider(scrapy.Spider):
     # 如果有下一页按钮，自动爬取下一页
     if next_btn:
       self.page_num += 1
-      next_url = self.start_urls[0] + '&page={}'.format(self.page_num)
-      print('正在爬取第 {} 页的数据'.format(self.page_num))
+      next_url = f'{self.start_urls[0]}&page={self.page_num}'
+      print(f'正在爬取第 {self.page_num} 页的数据')
       yield scrapy.Request(next_url, callback=self.parse, dont_filter=True)
     else:
       # 在没有下一页按钮的情况下，判断是不是反爬虫页面
