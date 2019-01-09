@@ -22,7 +22,7 @@ class MongoPipeline(object):
 
   def open_spider(self, spider):
     # TODO: 这里的 collection 应该存在其他地方
-    self.collection = '热门景点'
+    self.collection = spider.KEYWORD
     self.mongoClient.connectMongo()
     self.mongoClient.setIndex(self.collection, [('sight_id', 1)], unique=True)
 
