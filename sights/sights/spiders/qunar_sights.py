@@ -13,19 +13,17 @@ from sights.utils import baidu_ocr
 class HotSightSpider(scrapy.Spider):
   name = 'qunar-hot-sights'
   page_num = 1
-  KEYWORD = '汕头'
   proxy = None
+  keyword = '汕头'
 
-  start_urls = [
-    f'http://piao.qunar.com/ticket/list.htm?keyword={KEYWORD}'
-  ]
+  start_urls = [ f'http://piao.qunar.com/ticket/list.htm?keyword={keyword}' ]
 
   def parse(self, response):
     '''
     用于分析和提取去哪儿网的页面内容
     @url http://piao.qunar.com/ticket/list.htm?keyword=深圳
     @returns items
-    @scrapes sight_name sight_id sight_districts sight_point sight_address sight_sale_count
+    @scrapes name sid districts point address sale_count
     '''
     print('状态', response.status)
     # 获取景点列表
@@ -34,12 +32,12 @@ class HotSightSpider(scrapy.Spider):
     next_btn = response.xpath('//div[@class="pager"]/a[@class="next"]')
     for page_item in page_list:
       item = SightsItem()
-      item['sight_name'] = self.parse_item(page_item, 'data-sight-name')
-      item['sight_id'] = self.parse_item(page_item, 'data-id')
-      item['sight_districts'] = self.parse_item(page_item, 'data-districts')
-      item['sight_point'] = self.parse_item(page_item, 'data-point').split(',')
-      item['sight_address'] = self.parse_item(page_item, 'data-address')
-      item['sight_sale_count'] = self.parse_item(page_item, 'data-sale-count')
+      item['name'] = self.parse_item(page_item, 'data-sight-name')
+      item['sid'] = self.parse_item(page_item, 'data-id')
+      item['districts'] = self.parse_item(page_item, 'data-districts')
+      item['point'] = self.parse_item(page_item, 'data-point').split(',')
+      item['address'] = self.parse_item(page_item, 'data-address')
+      item['sale_count'] = self.parse_item(page_item, 'data-sale-count')
       yield item
     
     # 如果有下一页按钮，自动爬取下一页
@@ -65,7 +63,7 @@ class HotSightSpider(scrapy.Spider):
   # def parse_robot_img(self, response):
   #   print(response.status)
   #   if response.status == 200:
-  #     file_path = 'sights/images/{0}.{1}'.format(self.KEYWORD, 'jpg')
+  #     file_path = 'sights/images/{0}.{1}'.format(self.keyword, 'jpg')
   #     # 将验证码图片下载下来
   #     with open(file_path, 'wb') as f:
   #       f.write(response.body)

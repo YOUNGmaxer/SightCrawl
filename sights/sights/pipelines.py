@@ -22,9 +22,9 @@ class MongoPipeline(object):
 
   def open_spider(self, spider):
     # TODO: 这里的 collection 应该存在其他地方
-    self.collection = spider.KEYWORD
+    self.collection = spider.keyword
     self.mongoClient.connectMongo()
-    self.mongoClient.setIndex(self.collection, [('sight_id', 1)], unique=True)
+    self.mongoClient.setIndex(self.collection, [('sid', 1)], unique=True)
 
   def process_item(self, item, spider):
     self.mongoClient.insertItem(self.collection, dict(item))

@@ -1,9 +1,39 @@
 import scrapy
+from scrapy import Field
 
 class SightsItem(scrapy.Item):
-    sight_name = scrapy.Field()
-    sight_id = scrapy.Field()
-    sight_point = scrapy.Field()
-    sight_districts = scrapy.Field()
-    sight_address = scrapy.Field()
-    sight_sale_count = scrapy.Field()
+  name = Field()
+  sid = Field()
+  point = Field()
+  districts = Field()
+  address = Field()
+  sale_count = Field()
+
+class SightsDetailItem(scrapy.Item):
+  # 景点名称
+  name = Field()
+  # 景点id
+  sid = Field()
+  # 景点经纬度
+  point = Field()
+  # 景点地区
+  districts = Field()
+  # 景点地址
+  address = Field()
+  # 景点销量
+  sale_count = Field()
+  # 景点评分
+  star_score = Field()
+  '''
+  景点评论分布
+  :key all: 全部评论数
+  :key good: 好评数
+  :key mid: 中评数
+  :key bad: 差评数
+  '''
+  commont = Field()
+  '''
+  景点热评标签
+  :key 某特点: 评论数
+  '''
+  tags = Field()
