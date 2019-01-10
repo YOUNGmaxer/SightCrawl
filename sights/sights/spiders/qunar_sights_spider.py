@@ -8,15 +8,16 @@ from scrapy.shell import inspect_response
 from scrapy.loader import ItemLoader
 from sights.items import SightsItem
 from sights.utils import baidu_ocr
+from sights.custom_settings import qunar_sights_spider_settings
 
 # 景点列表爬虫-去哪儿
 class HotSightSpider(scrapy.Spider):
   name = 'qunar-hot-sights'
   page_num = 1
   proxy = None
-  keyword = '汕头'
-
+  keyword = '普宁'
   start_urls = [ f'http://piao.qunar.com/ticket/list.htm?keyword={keyword}' ]
+  custom_settings = qunar_sights_spider_settings.settings
 
   def parse(self, response):
     '''

@@ -2,14 +2,6 @@ import scrapy
 from scrapy import Field
 
 class SightsItem(scrapy.Item):
-  name = Field()
-  sid = Field()
-  point = Field()
-  districts = Field()
-  address = Field()
-  sale_count = Field()
-
-class SightsDetailItem(scrapy.Item):
   # 景点名称
   name = Field()
   # 景点id
@@ -22,8 +14,16 @@ class SightsDetailItem(scrapy.Item):
   address = Field()
   # 景点销量
   sale_count = Field()
+
+class SightsDetailItem(scrapy.Item):
+  # 景点id
+  sid = Field()
+  # 景区评级
+  level = Field()
   # 景点评分
   star_score = Field()
+  # 景点起步价
+  basic_price = Field()
   '''
   景点评论分布
   :key all: 全部评论数
@@ -31,7 +31,7 @@ class SightsDetailItem(scrapy.Item):
   :key mid: 中评数
   :key bad: 差评数
   '''
-  commont = Field()
+  comment = Field()
   '''
   景点热评标签
   :key 某特点: 评论数

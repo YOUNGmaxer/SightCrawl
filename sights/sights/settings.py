@@ -77,8 +77,7 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-  'sights.pipelines.SightsPipeline': 300,
-  'sights.pipelines.MongoPipeline': 400
+
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

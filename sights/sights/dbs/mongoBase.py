@@ -21,6 +21,9 @@ class MongoBaseClient():
       print('连接失败', e)
       return None
 
+  def getCollection(self, collection):
+    return self.db[collection]
+
   def insertItem(self, collection, document):
     if self.db:
       # 这里需要考虑，如果设置了唯一索引，那么此时插入重复的文档会报错，需要在这里捕获异常
@@ -28,6 +31,7 @@ class MongoBaseClient():
         return self.db[collection].insert_one(dict(document))
       except errors.DuplicateKeyError as e:
         print('插入文档出现异常!', e)
+        return -1
     else:
       print('可能尚未连接数据库')
       return None
@@ -54,6 +58,10 @@ class MongoBaseClient():
     '''
     self.db[collection].create_index(keys, **options)
     print('设置数据库{0}索引{1}'.format(collection, [key[0] for key in keys]))
+
+  def getAllIndex(self, collection):
+    res = self.db[collection].list_indexes()
+    print('索引', res.next())
 
   def closeDB(self):
     self.client.close()

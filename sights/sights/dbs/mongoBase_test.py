@@ -1,5 +1,5 @@
 import unittest
-from mongoBase import MongoBaseClient
+from sights.dbs.mongoBase import MongoBaseClient
 
 class TestMongoBase(unittest.TestCase):
   def setUp(self):
