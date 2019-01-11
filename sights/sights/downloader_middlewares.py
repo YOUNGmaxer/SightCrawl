@@ -50,10 +50,10 @@ class LocalRetryMiddleware(RetryMiddleware):
     if request.meta.get('dont_retry', False):
       return response
     
-    # 检查是否有去哪儿的验证码页面
-    robot_page = response.xpath('//div[@class="mp-robot-formcon"]')
-    if robot_page:
-      print('[爬虫异常]:发现 去哪儿 验证码页面，需要更换代理ip重新发送请求')
+    # 检查是否出现去哪儿的“请求数据错误”页面
+    page_error = response.xpath('//div[@class="error"]')
+    if page_error:
+      print('[爬虫异常]:发现 去哪儿 数据错误页面，需要更换代理ip重新发送请求')
       print('当前请求ip', request.meta.get('proxy'))
       print('请求信息', request)
       return self._retry(request, response.status, spider) or response

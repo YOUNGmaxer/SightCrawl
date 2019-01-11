@@ -1,5 +1,6 @@
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
+from scrapy.http import Request
 from sights.items import SightsDetailItem
 from sights.items import SightsItem
 from sights.custom_settings import qunar_detail_spider_settings
@@ -11,7 +12,7 @@ class SightDetailSpider(CrawlSpider):
   name = 'qunar-detail'
   keyword = '热门景点'
   proxy = None
-  start_urls = [ f'http://piao.qunar.com/ticket/list.htm?keyword={keyword}' ]
+  start_urls = [ f'http://piao.qunar.com/ticket/list.htm?keyword={keyword}&page=20' ]
   custom_settings = qunar_detail_spider_settings.settings
 
   rules = (
@@ -26,7 +27,13 @@ class SightDetailSpider(CrawlSpider):
     )
   )
 
+  def _build_request(self, rule, link):
+    r = Request(url=link.url, callback=self._response_downloaded, dont_filter=True)
+    r.meta.update(rule=rule, link_text=link.text)
+    return r
+
   def parse_item(self, response):
+    print('parse_item', '状态', response.status)
     item = SightsDetailItem()
     item['sid'] = self.getSidFromUrl(response.url)
     item['level'] = response.xpath('//span[@class="mp-description-level"]/text()').extract_first()

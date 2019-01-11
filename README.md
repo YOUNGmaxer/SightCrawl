@@ -4,6 +4,8 @@
 
 框架: `scrapy`
 
+## 介绍
+
 ### 结构
 
 * `/proxy_pool_origin`
@@ -13,3 +15,21 @@
 * `/sights`
 
   这个目录是基于 `scrapy` 的核心爬虫代码。
+
+## 测试
+
+**运行测试**:
+
+* `python3 -m unittest -v filepath`
+
+* 直接运行
+
+  ```python
+  if __name__ == '__main__':
+    unittest.main()
+  ```
+
+**命名**:
+
+`test_xxx.py`
+
