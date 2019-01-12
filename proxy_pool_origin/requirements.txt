@@ -1,0 +1,9 @@
+redis>=3.0.1
+aiohttp>=3.5.1
+Twisted>=18.9.0
+Scrapy>=1.5.1
+Flask>=1.0.2
+lxml>=4.2.5
+pyquery>=1.4.0
+selenium>=3.141.0
+requests>=2.21.0
