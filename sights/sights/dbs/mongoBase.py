@@ -15,7 +15,7 @@ class MongoBaseClient():
       self.client = pymongo.MongoClient(self.mongo_host, self.mongo_port)
       # 指定连接哪个数据库
       self.db = self.client[self.mongo_db]
-      print('成功连接数据库', self.mongo_db)
+      print('成功连接数据库', self.db)
       return True
     except Exception as e:
       print('连接失败', e)
@@ -32,6 +32,8 @@ class MongoBaseClient():
       except errors.DuplicateKeyError as e:
         print('插入文档出现异常!', e)
         return -1
+      except errors.ServerSelectionTimeoutError as e:
+        print('捕获异常 ServerSelectionTimeoutError', e)
     else:
       print('可能尚未连接数据库')
       return None
@@ -56,8 +58,11 @@ class MongoBaseClient():
     :param keys: 指定哪些键作为索引，可以指定多个，使用元组或元组数据
     :param **options: 传递配置项，设置索引
     '''
-    self.db[collection].create_index(keys, **options)
-    print('设置数据库{0}索引{1}'.format(collection, [key[0] for key in keys]))
+    try:
+      self.db[collection].create_index(keys, **options)
+      print('设置数据库{0}索引{1}'.format(collection, [key[0] for key in keys]))
+    except errors.ServerSelectionTimeoutError as e:
+      print('捕获异常 ServerSelectionTimeoutError', e)
 
   def getAllIndex(self, collection):
     res = self.db[collection].list_indexes()

@@ -10,9 +10,9 @@ import re
 
 class SightDetailSpider(CrawlSpider):
   name = 'qunar-detail'
-  keyword = '热门景点'
+  keyword = '普宁'
   proxy = None
-  start_urls = [ f'http://piao.qunar.com/ticket/list.htm?keyword={keyword}&page=20' ]
+  start_urls = [ f'http://piao.qunar.com/ticket/list.htm?keyword={keyword}' ]
   custom_settings = qunar_detail_spider_settings.settings
 
   rules = (

@@ -1,5 +1,5 @@
 import unittest
-from ip_proxy import AddrProxy
+from sights.utils.ip_proxy import AddrProxy
 
 class TestAddrProxy(unittest.TestCase):
   def test_getRandomProxyIP(self):

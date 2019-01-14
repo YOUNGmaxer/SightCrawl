@@ -5,7 +5,7 @@ import json
 
 class AddrProxy():
   def __init__(self):
-    self.host = 'http://localhost'
+    self.host = 'http://106.13.70.140'
     self.port = '5000'
     self.domain = ':'.join([self.host, self.port])
     self.error_info = '[Proxy Middleware]{}:'.format(__name__)

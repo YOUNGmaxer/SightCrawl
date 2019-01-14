@@ -3,7 +3,7 @@ from sights.dbs.mongoBase import MongoBaseClient
 
 class TestMongoBase(unittest.TestCase):
   def setUp(self):
-    self.MONGO_HOST = 'localhost'
+    self.MONGO_HOST = '106.13.70.140'
     self.MONGO_PORT = 27017
     self.MONGO_DB = 'test'
     self.collection_name = 'base'

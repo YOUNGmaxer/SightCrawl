@@ -1,0 +1,16 @@
+pymongo
+redis
+pyquery
+aiohttp
+lxml
+Twisted
+selenium
+Flask
+requests
+Pillow
+Scrapy
+scrapyd
+scrapyd-client
+scrapy-redis
+scrapy-splash
+python-scrapyd-api
