@@ -2,7 +2,7 @@
 @Description: In User Settings Edit
 @Author: YOUNG
 @Date: 2019-01-04 13:43:34
-@LastEditTime: 2019-01-07 19:53:02
+@LastEditTime: 2019-01-15 13:48:11
 @LastEditors: Please set LastEditors
 '''
 from redisClient import RedisClient
@@ -11,7 +11,7 @@ import asyncio
 
 VALID_STATUS_CODES = [200]
 # 此测试链接最好设置为有抓取需求的网站
-TEST_URL = 'http://www.baidu.com'
+TEST_URL = 'http://piao.qunar.com/ticket/detail_3261940195.html'
 BATCH_TEST_SIZE = 100
 
 class Tester(object):

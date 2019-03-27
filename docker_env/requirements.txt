@@ -12,5 +12,6 @@ Scrapy
 scrapyd
 scrapyd-client
 scrapy-redis
+scrapy-redis-bloomfilter
 scrapy-splash
 python-scrapyd-api

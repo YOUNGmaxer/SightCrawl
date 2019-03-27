@@ -26,7 +26,7 @@ class Crawler(object, metaclass=ProxyMetaclass):
       proxies.append(proxy)
     return proxies
   
-  def crawl_daili66(self, page_count=6):
+  def crawl_daili66(self, page_count=8):
     '''
     获取代理，来源为66ip
     :param page_count: 页码

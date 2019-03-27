@@ -5,7 +5,7 @@ from tester import Tester
 import time
 
 TESTER_CYCLE = 20
-GETTER_CYCLE = 20
+GETTER_CYCLE = 300
 TESTER_ENABLE = True
 GETTER_ENABLE = True
 API_ENABLE = True

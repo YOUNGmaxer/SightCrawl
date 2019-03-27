@@ -3,6 +3,6 @@ FROM python:3.7-slim
 COPY requirements.txt /usr/require/
 COPY scrapyd.conf /etc/scrapyd/
 WORKDIR /usr/require
-RUN apt-get update && apt-get install -y gcc unixodbc-dev
+RUN apt-get update && apt-get install -y gcc unixodbc-dev git vim-gtk
 RUN pip3 install --default-timeout=200 -r requirements.txt
 CMD /bin/bash
